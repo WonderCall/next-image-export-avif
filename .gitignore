@@ -1,6 +1,5 @@
 node_modules
 .DS_Store
-dist
 example/public/images/subfolder/nextImageExportOptimizer
 example/public/images/subfolder/subfolder2/nextImageExportOptimizer
 example/public/images/nextImageExportOptimizer
@@ -8,3 +7,4 @@ example/public/nextImageExportOptimizer
 example/remoteImagesForOptimization
 example/.vscode/settings.json
 test-results/.last-run.json
+.idea
