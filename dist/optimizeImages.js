@@ -44,7 +44,7 @@ if (nextConfigPath) {
   nextConfigPath = path.join(process.cwd(), "next.config.js");
 }
 const nextConfigFolder = path.dirname(nextConfigPath);
-const folderNameForRemoteImages = `remoteImagesForOptimization`;
+const folderNameForRemoteImages = `public/img/remoteImages`;
 const folderPathForRemoteImages = path.join(
   nextConfigFolder,
   folderNameForRemoteImages

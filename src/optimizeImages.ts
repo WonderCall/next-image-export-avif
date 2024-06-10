@@ -53,7 +53,7 @@ if (nextConfigPath) {
 }
 const nextConfigFolder = path.dirname(nextConfigPath);
 
-const folderNameForRemoteImages = `remoteImagesForOptimization`;
+const folderNameForRemoteImages = `public/img/remoteImages`;
 const folderPathForRemoteImages = path.join(
   nextConfigFolder,
   folderNameForRemoteImages
