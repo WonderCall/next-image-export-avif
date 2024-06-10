@@ -1,11 +1,11 @@
-import ExportedImage from "next-image-export-optimizer";
-import ExportedImageLegacy from "next-image-export-optimizer/legacy/ExportedImage";
 import Head from "next/head";
 import ExportedImage_Local from "../src/ExportedImage";
 import ExportedImageLegacy_Local from "../src/legacy/ExportedImage";
 
 import Image from "next/image";
 import testPictureStatic from "../public/chris-zhang-Jq8-3Bmh1pQ-unsplash_static.jpg";
+import ExportedImageLegacy from "../src/legacy/ExportedImage";
+import ExportedImage from "../src/ExportedImage";
 
 export default function Home() {
   // get the basePath set in next.config.js
