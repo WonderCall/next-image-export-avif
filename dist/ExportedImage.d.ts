@@ -4,5 +4,5 @@ export interface ExportedImageProps extends Omit<ImageProps, "src" | "loader" | 
     src: string | StaticImageData;
     basePath?: string;
 }
-declare const ExportedImage: React.ForwardRefExoticComponent<Omit<ExportedImageProps, "ref"> & React.RefAttributes<HTMLImageElement | null>>;
+declare const ExportedImage: React.ForwardRefExoticComponent<ExportedImageProps & React.RefAttributes<HTMLImageElement | null>>;
 export default ExportedImage;

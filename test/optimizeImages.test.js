@@ -15,9 +15,9 @@ const deleteFolder = (folderName) => {
 };
 
 const filterForImages = (file) => {
-  let extension = file.split(".").pop().toUpperCase();
+  let extension = file.split(".").pop().toLowerCase();
   // Stop if the file is not an image
-  return ["JPG", "JPEG", "WEBP", "PNG", "GIF", "AVIF"].includes(extension);
+  return ["jpg", "jpeg", "webp", "png", "gif", "avif"].includes(extension);
 };
 const getFiles = (dirPath) =>
   fs.existsSync(dirPath) ? fs.readdirSync(dirPath) : [];
@@ -31,7 +31,7 @@ const legacyConfig = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    storePicturesInWEBP: "false",
+    storePicturesInAVIF: "false",
     generateAndUseBlurImages: "true",
   },
 };
@@ -45,11 +45,11 @@ const newConfig = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
-    nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
+    nextImageExportOptimizer_exportFolderName: "img/optimized",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "true",
+    nextImageExportOptimizer_storePicturesInAVIF: "true",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
     nextImageExportOptimizer_remoteImageCacheTTL: "0",
   },
@@ -64,10 +64,10 @@ const newConfigJpeg = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "false",
+    nextImageExportOptimizer_storePicturesInAVIF: "false",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
     nextImageExportOptimizer_remoteImageCacheTTL: "0",
   },
@@ -82,10 +82,10 @@ const newConfigExportFolderName = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "false",
+    nextImageExportOptimizer_storePicturesInAVIF: "false",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
     nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer2",
   },
@@ -101,11 +101,11 @@ const newConfigBasePath = `module.exports = {
   },
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "true",
+    nextImageExportOptimizer_storePicturesInAVIF: "true",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
     nextImageExportOptimizer_remoteImageCacheTTL: "0",
   },
@@ -113,17 +113,17 @@ const newConfigBasePath = `module.exports = {
 `;
 
 async function testConfig(config) {
-  deleteFolder("example/public/images/nextImageExportOptimizer");
+  deleteFolder("example/public/img/nextImageExportOptimizer");
   deleteFolder("example/public/nextImageExportOptimizer");
-  deleteFolder("example/public/images/subfolder/nextImageExportOptimizer");
+  deleteFolder("example/public/img/subfolder/nextImageExportOptimizer");
   deleteFolder(
-    "example/public/images/subfolder/subfolder2/nextImageExportOptimizer"
+    "example/public/img/subfolder/subfolder2/nextImageExportOptimizer"
   );
-  deleteFolder("example/public/images/nextImageExportOptimizer2");
+  deleteFolder("example/public/img/nextImageExportOptimizer2");
   deleteFolder("example/public/nextImageExportOptimizer2");
-  deleteFolder("example/public/images/subfolder/nextImageExportOptimizer2");
+  deleteFolder("example/public/img/subfolder/nextImageExportOptimizer2");
   deleteFolder(
-    "example/public/images/subfolder/subfolder2/nextImageExportOptimizer2"
+    "example/public/img/subfolder/subfolder2/nextImageExportOptimizer2"
   );
   // write config file for the to be tested configuration variables to the folder
   fs.writeFileSync("example/next.config.js", config);
@@ -146,7 +146,7 @@ async function testConfig(config) {
   );
 
   const allFilesInImageFolder = getFiles(
-    "example/public/images/nextImageExportOptimizer"
+    "example/public/img/nextImageExportOptimizer"
   );
   const allImagesInImageFolder = allFilesInImageFolder.filter(filterForImages);
   const allFilesInStaticImageFolder = getFiles(
@@ -156,7 +156,7 @@ async function testConfig(config) {
     allFilesInStaticImageFolder.filter(filterForImages);
 
   const allFilesInImageSubFolder = getFiles(
-    "example/public/images/subfolder/nextImageExportOptimizer"
+    "example/public/img/subfolder/nextImageExportOptimizer"
   );
   const allImagesInImageSubFolder =
     allFilesInImageSubFolder.filter(filterForImages);
@@ -174,7 +174,7 @@ async function testConfig(config) {
 
   // For custom export folder name
   const allFilesInImageFolderCustomExportFolder = getFiles(
-    "example/public/images/nextImageExportOptimizer2"
+    "example/public/img/nextImageExportOptimizer2"
   );
 
   const allImagesInImageFolderCustomExportFolder =
@@ -187,7 +187,7 @@ async function testConfig(config) {
     allFilesInStaticImageFolderCustomExportFolder.filter(filterForImages);
 
   const allFilesInImageSubFolderCustomExportFolder = getFiles(
-    "example/public/images/subfolder/nextImageExportOptimizer2"
+    "example/public/img/subfolder/nextImageExportOptimizer2"
   );
 
   const allImagesInImageSubFolderCustomExportFolder =
@@ -237,11 +237,11 @@ async function testConfig(config) {
 
   const imageFolders = [
     {
-      basePath: "example/public/images/nextImageExportOptimizer",
+      basePath: "example/public/img/nextImageExportOptimizer",
       imageFileArray: allImagesInImageFolder,
     },
     {
-      basePath: "example/public/images/subfolder/nextImageExportOptimizer",
+      basePath: "example/public/img/subfolder/nextImageExportOptimizer",
       imageFileArray: allFilesInImageBuildSubFolder,
     },
     {
@@ -249,11 +249,11 @@ async function testConfig(config) {
       imageFileArray: allImagesInStaticImageFolder,
     },
     {
-      basePath: "example/public/images/nextImageExportOptimizer2",
+      basePath: "example/public/img/nextImageExportOptimizer2",
       imageFileArray: allImagesInImageFolderCustomExportFolder,
     },
     {
-      basePath: "example/public/images/subfolder/nextImageExportOptimizer2",
+      basePath: "example/public/img/subfolder/nextImageExportOptimizer2",
       imageFileArray: allFilesInImageBuildSubFolderCustomExportFolder,
     },
     {

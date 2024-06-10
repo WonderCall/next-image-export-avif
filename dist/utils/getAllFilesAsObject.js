@@ -1,16 +1,16 @@
-import { ImageObject } from "./ImageObject";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 module.exports = function getAllFilesAsObject(
-  basePath: string,
-  dirPath: string,
-  exportFolderName: string,
-  arrayOfFiles: ImageObject[] = []
+  basePath,
+  dirPath,
+  exportFolderName,
+  arrayOfFiles = []
 ) {
   // check if the path is existing
   if (fs.existsSync(dirPath)) {
     let files = fs.readdirSync(dirPath);
-
-    files.forEach(function (file: string) {
+    files.forEach(function (file) {
       if (
         fs.statSync(dirPath + "/" + file).isDirectory() &&
         file !== exportFolderName &&
@@ -30,6 +30,5 @@ module.exports = function getAllFilesAsObject(
       }
     });
   }
-
   return arrayOfFiles;
 };

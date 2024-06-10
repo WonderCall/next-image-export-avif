@@ -6,18 +6,18 @@ Use [Next.js advanced **\<Image/>** component](https://nextjs.org/docs/basic-fea
 
 - Reduces the image size and page load times drastically through responsive images
 - Fast image transformation using [sharp.js](https://www.npmjs.com/package/sharp) (also used by the Next.js server in production)
-- Conversion of JPEG and PNG files to the modern WEBP format by default
+- Conversion of JPEG and PNG files to the modern AVIF format by default
 - Serve the exported React bundle only via a CDN. No server required
 - Automatic generation of tiny, blurry placeholder images
 - Minimal configuration necessary
 - Supports TypeScript
 - Supports remote images which will be downloaded and optimized
-- Supports animated images (accepted formats: GIF and WEBP)
+- Supports animated images (accepted formats: GIF and AVIF)
 - Note that only one global value can be used for the image quality setting. The default value is 75.
 
 Placement of the images:
 
-- All images that should be optimized are stored inside the public folder like public/images (except for the statically imported images and remote images). The images are then referenced in the **src** attribute of the **\<ExportedImage />** component.
+- All images that should be optimized are stored inside the public folder like public/img (except for the statically imported images and remote images). The images are then referenced in the **src** attribute of the **\<ExportedImage />** component.
 
 ## Installation
 
@@ -42,11 +42,11 @@ module.exports = {
   },
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "true",
-    nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
+    nextImageExportOptimizer_storePicturesInAVIF: "true",
+    nextImageExportOptimizer_exportFolderName: "img/optimized",
 
     // If you do not want to use blurry placeholder images, then you can set
     // nextImageExportOptimizer_generateAndUseBlurImages to false and pass
@@ -61,7 +61,7 @@ module.exports = {
 ```
 
 1. Add the above configuration to your **next.config.js**
-2. Change the default values in your **next.config.js** where appropriate. For example, specify the folder where all the images are stored (Defaults to **public/images**)
+2. Change the default values in your **next.config.js** where appropriate. For example, specify the folder where all the images are stored (Defaults to **public/img**)
 3. Change the export command in `package.json`
 
    ```diff
@@ -200,8 +200,8 @@ module.exports = {
    **Placeholder images:**
    If you do not want the automatic generation of tiny, blurry placeholder images, set the `nextImageExportOptimizer_generateAndUseBlurImages` environment variable to `false` and set the `placeholder` prop from the **\<ExportedImage />** component to `empty`.
 
-   **Usage of the WEBP format:**
-   If you do not want to use the WEBP format, set the `nextImageExportOptimizer_storePicturesInWEBP` environment variable to `false`.
+   **Usage of the AVIF format:**
+   If you do not want to use the AVIF format, set the `nextImageExportOptimizer_storePicturesInAVIF` environment variable to `false`.
 
    **Rename the export folder name:**
    If you want to rename the export folder name, set the `nextImageExportOptimizer_exportFolderPath` environment variable to the desired folder name. The default is `nextImageExportOptimizer`.
@@ -239,9 +239,9 @@ module.exports = {
     ```
 
 11. Animated images:
-    You can use .gif and animated .webp images. Next-image-export-optimizer will automatically optimize the animated images and generate the srcset for the different resolutions.
+    You can use .gif and animated .avif images. Next-image-export-optimizer will automatically optimize the animated images and generate the srcset for the different resolutions.
 
-    If you set the variable nextImageExportOptimizer_storePicturesInWEBP to true, the animated images will be converted to .webp format which can reduce the file size significantly.
+    If you set the variable nextImageExportOptimizer_storePicturesInAVIF to true, the animated images will be converted to .avif format which can reduce the file size significantly.
     Note that animated png images are not supported by this package.
 
 ## Live example

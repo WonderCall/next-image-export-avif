@@ -11,11 +11,11 @@ const newConfigBasePath = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
-    nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
+    nextImageExportOptimizer_exportFolderName: "img/optimized",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "false",
+    nextImageExportOptimizer_storePicturesInAVIF: "false",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
   },
 };
@@ -39,7 +39,7 @@ const config = {
   ],
   webServer: {
     command:
-      "cd example && npm run export && BASEPATH=true IMAGESWEBP=false node testServer.js",
+      "cd example && npm run export && BASEPATH=true IMAGESAVIF=false node testServer.js",
     port: 8080,
     timeout: 120 * 1000,
     reuseExistingServer: false,

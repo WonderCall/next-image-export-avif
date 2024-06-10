@@ -10,11 +10,11 @@ const newConfigBasePath = `module.exports = {
   output: "export",
   transpilePackages: ["next-image-export-optimizer"],
   env: {
-    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
-    nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
+    nextImageExportOptimizer_exportFolderName: "img/optimized",
     nextImageExportOptimizer_quality: "75",
-    nextImageExportOptimizer_storePicturesInWEBP: "true",
+    nextImageExportOptimizer_storePicturesInAVIF: "true",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
   },
 };
