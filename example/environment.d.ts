@@ -1,9 +1,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      storePicturesInWEBP: string | undefined;
+      storePicturesInAVIF: string | undefined;
       generateAndUseBlurImages: string | undefined;
-      nextImageExportOptimizer_storePicturesInWEBP: string | undefined;
+      nextImageExportOptimizer_storePicturesInAVIF: string | undefined;
       nextImageExportOptimizer_generateAndUseBlurImages: string | undefined;
       nextImageExportOptimizer_exportFolderName: string | undefined;
       nextImageExportOptimizer_quality: string | undefined;

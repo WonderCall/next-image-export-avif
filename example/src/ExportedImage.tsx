@@ -27,29 +27,29 @@ const generateImageURL = (
   isRemoteImage: boolean = false
 ) => {
   const { filename, path, extension } = splitFilePath({ filePath: src });
-  const useWebp =
-    process.env.nextImageExportOptimizer_storePicturesInWEBP != undefined
-      ? process.env.nextImageExportOptimizer_storePicturesInWEBP == "true"
+  const useAvif =
+    process.env.nextImageExportOptimizer_storePicturesInAVIF != undefined
+      ? process.env.nextImageExportOptimizer_storePicturesInAVIF == "true"
       : true;
 
   if (
-    !["JPG", "JPEG", "WEBP", "PNG", "AVIF", "GIF"].includes(
-      extension.toUpperCase()
+    !["jpg", "jpeg", "webp", "png", "avif", "gif"].includes(
+      extension.toLowerCase()
     )
   ) {
     // The images has an unsupported extension
     // We will return the src
     return src;
   }
-  // If the images are stored as WEBP by the package, then we should change
-  // the extension to WEBP to load them correctly
+  // If the images are stored as AVIF by the package, then we should change
+  // the extension to AVIF to load them correctly
   let processedExtension = extension;
 
   if (
-    useWebp &&
-    ["JPG", "JPEG", "PNG", "GIF"].includes(extension.toUpperCase())
+    useAvif &&
+    ["jpg", "jpeg", "png", "gif"].includes(extension.toLowerCase())
   ) {
-    processedExtension = "WEBP";
+    processedExtension = "avif";
   }
 
   let correctedPath = path;
@@ -80,13 +80,12 @@ const generateImageURL = (
   }
 
   const exportFolderName =
-    process.env.nextImageExportOptimizer_exportFolderName ||
-    "nextImageExportOptimizer";
+    process.env.nextImageExportOptimizer_exportFolderName || "img/optimized";
   const basePathPrefixForStaticImages = basePath ? basePath + "/" : "";
 
   let generatedImageURL = `${
     isStaticImage ? basePathPrefixForStaticImages : correctedPath
-  }${exportFolderName}/${filename}-opt-${width}.${processedExtension.toUpperCase()}`;
+  }${exportFolderName}/${filename}-opt-${width}.${processedExtension.toLowerCase()}`;
 
   // if the generatedImageURL is not starting with a slash, then we add one as long as it is not a remote image
   if (!isRemoteImage && generatedImageURL.charAt(0) !== "/") {
