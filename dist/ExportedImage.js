@@ -25,19 +25,19 @@ const generateImageURL = (src, width, basePath, isRemoteImage = false) => {
       : true;
   if (
     !["jpg", "jpeg", "webp", "png", "avif", "gif"].includes(
-      extension.toLowerCase()
+      extension.toUpperCase()
     )
   ) {
     // The images has an unsupported extension
     // We will return the src
     return src;
   }
-  // If the images are stored as avif by the package, then we should change
-  // the extension to avif to load them correctly
+  // If the images are stored as AVIF by the package, then we should change
+  // the extension to AVIF to load them correctly
   let processedExtension = extension;
   if (
     useAvif &&
-    ["jpg", "jpeg", "png", "gif"].includes(extension.toLowerCase())
+    ["jpg", "jpeg", "png", "gif"].includes(extension.toUpperCase())
   ) {
     processedExtension = "avif";
   }
@@ -66,11 +66,12 @@ const generateImageURL = (src, width, basePath, isRemoteImage = false) => {
     }
   }
   const exportFolderName =
-    process.env.nextImageExportOptimizer_exportFolderName || "img/optimized";
+    process.env.nextImageExportOptimizer_exportFolderName ||
+    "nextImageExportOptimizer";
   const basePathPrefixForStaticImages = basePath ? basePath + "/" : "";
   let generatedImageURL = `${
     isStaticImage ? basePathPrefixForStaticImages : correctedPath
-  }${exportFolderName}/${filename}-opt-${width}.${processedExtension.toLowerCase()}`;
+  }${exportFolderName}/${filename}-opt-${width}.${processedExtension.toUpperCase()}`;
   // if the generatedImageURL is not starting with a slash, then we add one as long as it is not a remote image
   if (!isRemoteImage && generatedImageURL.charAt(0) !== "/") {
     generatedImageURL = "/" + generatedImageURL;
