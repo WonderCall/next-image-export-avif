@@ -46,7 +46,7 @@ module.exports = {
     nextImageExportOptimizer_exportFolderPath: "out",
     nextImageExportOptimizer_quality: "75",
     nextImageExportOptimizer_storePicturesInAVIF: "true",
-    nextImageExportOptimizer_exportFolderName: "img/optimized",
+    nextImageExportOptimizer_exportFolderName: "optimized",
 
     // If you do not want to use blurry placeholder images, then you can set
     // nextImageExportOptimizer_generateAndUseBlurImages to false and pass

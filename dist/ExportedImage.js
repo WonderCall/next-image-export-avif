@@ -51,7 +51,7 @@ const generateImageURL = (src, width, basePath, isRemoteImage = false) => {
             correctedPath = basePath + correctedPath;
         }
     }
-    const exportFolderName = process.env.nextImageExportOptimizer_exportFolderName || "img/optimized";
+    const exportFolderName = process.env.nextImageExportOptimizer_exportFolderName || "optimized";
     const basePathPrefixForStaticImages = basePath ? basePath + "/" : "";
     let generatedImageURL = `${isStaticImage ? basePathPrefixForStaticImages : correctedPath}${exportFolderName}/${filename}-opt-${width}.${processedExtension.toLowerCase()}`;
     // if the generatedImageURL is not starting with a slash, then we add one as long as it is not a remote image

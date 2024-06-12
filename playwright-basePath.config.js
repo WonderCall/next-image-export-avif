@@ -13,7 +13,7 @@ const newConfigBasePath = `module.exports = {
   env: {
     nextImageExportOptimizer_imageFolderPath: "public/img",
     nextImageExportOptimizer_exportFolderPath: "out",
-    nextImageExportOptimizer_exportFolderName: "img/optimized",
+    nextImageExportOptimizer_exportFolderName: "optimized",
     nextImageExportOptimizer_quality: "75",
     nextImageExportOptimizer_storePicturesInAVIF: "false",
     nextImageExportOptimizer_generateAndUseBlurImages: "true",

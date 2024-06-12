@@ -8,7 +8,7 @@ module.exports = function getAllFilesAsObject(basePath, dirPath, exportFolderNam
         files.forEach(function (file) {
             if (fs.statSync(dirPath + "/" + file).isDirectory() &&
                 file !== exportFolderName &&
-                file !== "img/optimized" // default export folder name
+                file !== "optimized" // default export folder name
             ) {
                 arrayOfFiles = getAllFilesAsObject(basePath, dirPath + "/" + file, exportFolderName, arrayOfFiles);
             }

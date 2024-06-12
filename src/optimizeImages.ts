@@ -80,7 +80,7 @@ const nextImageExportOptimizer = async function () {
   let storePicturesInAVIF = true;
   let blurSize: number[] = [];
   let remoteImageCacheTTL = 0;
-  let exportFolderName = "img/optimized";
+  let exportFolderName = "optimized";
   const { remoteImageFilenames, remoteImageURLs } = await getRemoteImageURLs(
     nextConfigFolder,
     folderPathForRemoteImages

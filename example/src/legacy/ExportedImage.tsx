@@ -65,7 +65,7 @@ const generateImageURL = (
   }
 
   const exportFolderName =
-    process.env.nextImageExportOptimizer_exportFolderName || "img/optimized";
+    process.env.nextImageExportOptimizer_exportFolderName || "optimized";
   const basePathPrefixForStaticImages = basePath ? basePath + "/" : "";
 
   let generatedImageURL = `${
